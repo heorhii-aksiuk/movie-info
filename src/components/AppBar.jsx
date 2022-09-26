@@ -1,9 +1,21 @@
-import { Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
+// import styled from 'styled-components'
 
 export default function AppBar() {
   return (
     <>
-      <div>AppBar</div>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="movies">Movies</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <Outlet />
     </>
   )
