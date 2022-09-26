@@ -5,7 +5,7 @@ export default function HomeView() {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
-    ;(async function () {
+    ;(async () => {
       const { results: movies } = await API.getPopular()
       if (movies) setMovies(movies)
     })()
