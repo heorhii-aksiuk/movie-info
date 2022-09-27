@@ -6,7 +6,7 @@ export default function HomeView() {
 
   useEffect(() => {
     ;(async () => {
-      const { results: movies } = await API.getPopular()
+      const movies = await API.getPopular()
       if (movies) setMovies(movies)
     })()
   }, [])
@@ -16,7 +16,7 @@ export default function HomeView() {
       {movies && (
         <ul>
           {movies.map((movie) => (
-            <li key={movie.id}>{movie.original_title}</li>
+            <li key={movie.id}>{movie.title}</li>
           ))}
         </ul>
       )}
