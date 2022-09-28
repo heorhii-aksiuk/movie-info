@@ -11,6 +11,9 @@ async function fetchData(request) {
   }
 }
 
-export const getPopular = () => fetchData(REQUEST_URL.POPULAR)
+export const getPopularMovies = () => fetchData(REQUEST_URL.POPULAR)
 
-export const searchMovies = (query) => fetchData(REQUEST_URL.SEARCH + query)
+export const getSearchedMovies = (query) =>
+  fetchData(REQUEST_URL.SEARCH + query)
+
+export const getMovieInfo = (id) => fetchData(REQUEST_URL.INFO + id)

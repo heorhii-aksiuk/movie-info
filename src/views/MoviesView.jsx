@@ -20,7 +20,7 @@ export default function MoviesView() {
   useEffect(() => {
     if (!searchValue) return
     ;(async () => {
-      const movies = await API.searchMovies(searchValue)
+      const movies = await API.getSearchedMovies(searchValue)
       if (movies) setMovies(movies)
     })()
   }, [searchValue])
