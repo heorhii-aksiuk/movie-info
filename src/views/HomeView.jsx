@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { API } from '../services/api'
+import MovieList from '../components/MovieList'
 
 export default function HomeView() {
   const [movies, setMovies] = useState([])
@@ -11,15 +12,7 @@ export default function HomeView() {
     })()
   }, [])
 
-  return (
-    <section>
-      {movies && (
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
-      )}
-    </section>
-  )
+  const isMovies = movies.length > 0
+
+  return <section>{isMovies && <MovieList movies={movies} />}</section>
 }
