@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import * as API from '../services/api'
+import { API } from '../services/api'
 
 export default function HomeView() {
   const [movies, setMovies] = useState([])

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import { API } from '../services/api'
 
 export default function MoviesView() {
   const [inputValue, setInputValue] = useState('')
   const [searchValue, setSearchValue] = useState('')
+  const [movies, setMovies] = useState([])
 
   const handleChange = (event) => {
     setInputValue(event.target.value)
@@ -11,10 +13,17 @@ export default function MoviesView() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    //TODO: trim
     setSearchValue(inputValue)
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    if (!searchValue) return
+    ;(async () => {
+      const movies = await API.searchMovies(searchValue)
+      if (movies) setMovies(movies)
+    })()
+  }, [searchValue])
 
   return (
     <section>
@@ -22,7 +31,13 @@ export default function MoviesView() {
         <input onChange={handleChange} value={inputValue} />
         <button type="submit">Find</button>
       </form>
-      <p>{searchValue}</p>
+      {movies && (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id}>{movie.title}</li>
+          ))}
+        </ul>
+      )}
       <Outlet />
     </section>
   )

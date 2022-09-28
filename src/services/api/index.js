@@ -1,1 +1,1 @@
-export { default as getPopular } from './getPopular'
+export * as API from './fetchData'
