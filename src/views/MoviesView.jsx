@@ -6,7 +6,7 @@ import MovieList from '../components/MovieList'
 export default function MoviesView() {
   const [inputValue, setInputValue] = useState('')
   const [searchValue, setSearchValue] = useState('')
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState(null)
 
   const handleChange = (event) => {
     setInputValue(event.target.value)
@@ -14,19 +14,17 @@ export default function MoviesView() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    //TODO: trim
-    setSearchValue(inputValue)
+    const value = inputValue.trim()
+    setSearchValue(value)
   }
 
   useEffect(() => {
     if (!searchValue) return
     ;(async () => {
-      const movies = await API.getSearchedMovies(searchValue)
+      const { results: movies } = await API.getSearchedMovies(searchValue)
       if (movies) setMovies(movies)
     })()
   }, [searchValue])
-
-  const isMovies = movies.length > 0
 
   return (
     <section>
@@ -34,7 +32,7 @@ export default function MoviesView() {
         <input onChange={handleChange} value={inputValue} />
         <button type="submit">Find</button>
       </form>
-      {isMovies && <MovieList movies={movies} />}
+      {movies && <MovieList movies={movies} />}
       <Outlet />
     </section>
   )

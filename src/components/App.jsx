@@ -1,16 +1,18 @@
 import { Routes, Route } from 'react-router-dom'
-import AppBar from './AppBar'
+import GlobalStyle from '../styles/GlobalStyle'
+
 import HomeView from '../views/HomeView'
 import MoviesView from '../views/MoviesView'
 import MovieDetailsView from '../views/MovieDetailsView'
 import NotFoundView from '../views/NotFoundView'
+
+import AppBar from './AppBar'
 import Cast from './Cast'
 import Reviews from './Reviews'
-import GlobalStyle from '../styles/GlobalStyle'
 
 export default function App() {
   return (
-    <div>
+    <>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<AppBar />}>
@@ -23,6 +25,6 @@ export default function App() {
           <Route path="*" element={<NotFoundView />} />
         </Route>
       </Routes>
-    </div>
+    </>
   )
 }

@@ -3,16 +3,14 @@ import { API } from '../services/api'
 import MovieList from '../components/MovieList'
 
 export default function HomeView() {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState(null)
 
   useEffect(() => {
     ;(async () => {
-      const movies = await API.getPopularMovies()
+      const { results: movies } = await API.getPopularMovies()
       if (movies) setMovies(movies)
     })()
   }, [])
 
-  const isMovies = movies.length > 0
-
-  return <section>{isMovies && <MovieList movies={movies} />}</section>
+  return <section>{movies && <MovieList movies={movies} />}</section>
 }
