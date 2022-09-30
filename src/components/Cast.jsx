@@ -1,7 +1,21 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { API } from '../services/api'
+import CastList from '../components/CastList'
 
 export default function Cast() {
-  return (
-    <div>Cast</div>
-  )
+  const [cast, setCast] = useState(null)
+  const { movieId } = useParams()
+
+  useEffect(() => {
+    if (!movieId) return
+    ;(async () => {
+      const { cast } = await API.getMovieCast(movieId)
+      if (cast) setCast(cast)
+    })()
+  }, [movieId])
+
+  console.log(cast)
+
+  return <section>{cast && <CastList cast={cast} />}</section>
 }

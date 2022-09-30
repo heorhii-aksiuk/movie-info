@@ -9,4 +9,6 @@ export const REQUEST_URL = {
   POPULAR: '/trending/movie/day',
   SEARCH: '/search/movie?query=',
   INFO: '/movie/',
+  CAST: '/credits',
+  REVIEWS: '/reviews',
 }
