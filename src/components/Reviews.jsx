@@ -19,3 +19,5 @@ export default function Reviews() {
 
   return <section>{reviews && <ReviewsList reviews={reviews} />}</section>
 }
+
+//TODO: render info if no reviews

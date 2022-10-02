@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useSearchParams } from 'react-router-dom'
 import { API } from '../services/api'
 import MovieList from '../components/MovieList'
 
 export default function MoviesView() {
   const [inputValue, setInputValue] = useState('')
-  const [searchValue, setSearchValue] = useState('')
   const [movies, setMovies] = useState(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const query = searchParams.get('query')
 
   const handleChange = (event) => {
     setInputValue(event.target.value)
@@ -14,17 +15,17 @@ export default function MoviesView() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const value = inputValue.trim()
-    setSearchValue(value)
+    const query = inputValue.trim()
+    setSearchParams({ query })
   }
 
   useEffect(() => {
-    if (!searchValue) return
+    if (!query) return
     ;(async () => {
-      const { results: movies } = await API.getSearchedMovies(searchValue)
+      const { results: movies } = await API.getSearchedMovies(query)
       if (movies) setMovies(movies)
     })()
-  }, [searchValue])
+  }, [query])
 
   return (
     <section>
