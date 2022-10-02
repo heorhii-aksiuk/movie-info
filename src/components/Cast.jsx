@@ -15,7 +15,5 @@ export default function Cast() {
     })()
   }, [movieId])
 
-  console.log(cast)
-
   return <section>{cast && <CastList cast={cast} />}</section>
 }
