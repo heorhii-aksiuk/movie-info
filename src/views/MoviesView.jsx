@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useSearchParams } from 'react-router-dom'
+import {  useSearchParams } from 'react-router-dom'
 import { API } from '../services/api'
 import MovieList from '../components/MovieList'
 
@@ -34,7 +34,6 @@ export default function MoviesView() {
         <button type="submit">Find</button>
       </form>
       {movies && <MovieList movies={movies} />}
-      <Outlet />
     </section>
   )
 }

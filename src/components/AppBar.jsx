@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function AppBar() {
   return (
@@ -15,7 +15,6 @@ export default function AppBar() {
           </ul>
         </nav>
       </header>
-      <Outlet />
     </>
   )
 }
