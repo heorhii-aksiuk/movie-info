@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
 import AppBar from './AppBar'
 
 export default function SharedLayout() {
@@ -7,8 +8,15 @@ export default function SharedLayout() {
     <>
       <AppBar />
       <Suspense fallback={<p>loading...</p>}>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </Suspense>
     </>
   )
 }
+
+const Container = styled.div`
+  width: 320px;
+  margin: 0 auto;
+`
