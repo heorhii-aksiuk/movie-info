@@ -34,8 +34,10 @@ a {
 }
 
 body {
+  font-family: ${(props) => props.theme.mainFont};
   background-color: ${(props) => props.theme.mainBackgroundColor};
 }
+
 `
 
 export default GlobalStyle
